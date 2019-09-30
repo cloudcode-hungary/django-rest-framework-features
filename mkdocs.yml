@@ -1,0 +1,4 @@
+site_name: djangorestframework-features
+site_description: Rapid schema generation, unit generation, permission management based on named features
+repo_url: https://github.com/balintb/cloudcode-hungary/django-rest-framework-features
+site_dir: html
