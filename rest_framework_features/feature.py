@@ -3,7 +3,7 @@ from rest_framework.schemas import SchemaGenerator
 
 
 class Feature:
-    _registry = {}
+    _registry_attr_name = '_feature'
     _schema = None
 
     def __init__(self, **kwargs):
@@ -13,7 +13,7 @@ class Feature:
     def view(cls, *groups, **features):
         def decorator(view_class):
             if not features:
-                raise ImproperlyConfigured('TODO invalid')
+                raise ImproperlyConfigured('TODO invalid decorator, no http method names')
             for http_method_name, feature_name in features.items():
                 description = list(groups)
                 if isinstance(feature_name, (list, tuple)):
@@ -21,18 +21,20 @@ class Feature:
                         description.append(f)
                 else:
                     description.append(feature_name)
-                cls._registry[view_class] = (
+                registry = getattr(view_class, cls._registry_attr_name, {})
+                registry[http_method_name] = (
                     description,
                     http_method_name,
                     view_class,
                 )
+                setattr(view_class, cls._registry_attr_name, registry)
             return view_class
 
         return decorator
 
     @classmethod
-    def get_schema(cls):
-        if cls._schema:
+    def get_schema(cls, cache=True):
+        if cache and cls._schema:
             return cls._schema
         generator = SchemaGenerator()
         enumerator = generator.endpoint_inspector_cls()
@@ -42,15 +44,15 @@ class Feature:
             view = generator.create_view(view_func, http_method_name, None)
             coerced_url = generator.coerce_path(url, http_method_name, view)
             try:
-                feature = cls._registry[view_func.cls]
-            except KeyError:
+                feature = getattr(view_func.cls, cls._registry_attr_name)[http_method_name.lower()]
+            except AttributeError:
                 raise ImproperlyConfigured('TODO missing view definition')
             description, http_method_name, view_class = feature
             *groups, feature_name = description
             if feature_name in schema:
                 raise ImproperlyConfigured('TODO duplicate feature name')
             schema[feature_name] = cls(
-                feature_name=feature_name,
+                name=feature_name,
                 url=url,
                 coerced_url=coerced_url,
                 http_method_name=http_method_name,

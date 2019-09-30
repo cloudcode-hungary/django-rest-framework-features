@@ -9,4 +9,4 @@ def reverse(feature_name, **kwargs):
         feature = schema[feature_name]
     except KeyError:
         raise NoReverseMatch(feature_name)
-    print(feature.url, feature.coerced_url, kwargs)
+    return feature.coerced_url.format(**kwargs)

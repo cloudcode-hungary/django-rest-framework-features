@@ -3,6 +3,7 @@
 *~
 .*
 
+.idea
 html/
 htmlcov/
 coverage/
