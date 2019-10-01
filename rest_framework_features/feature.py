@@ -6,8 +6,14 @@ class Feature:
     _registry_attr_name = '_feature'
     _schema = None
 
-    def __init__(self, **kwargs):
-        self.__dict__.update(**kwargs)
+    def __init__(self, name, url, coerced_url, http_method_name, view_class, groups, description):
+        self.name = name
+        self.url = url
+        self.coerced_url = coerced_url
+        self.http_method_name = http_method_name
+        self.view_class = view_class
+        self.groups = groups
+        self.description = description
 
     @classmethod
     def view(cls, *groups, **features):

@@ -17,3 +17,11 @@ def test_feature_view_decorator():
     assert description == ['app', 'test', 'deleteTest']
     assert http_method_name == 'delete'
     assert view_class == TestRetrieveDestroyView
+
+
+def test_feature_schema():
+    schema = Feature.get_schema()
+    assert schema['listTests'].name == 'listTests'
+    assert schema['listTests'].coerced_url == '/api/1/test/'
+    assert schema['listTests'].description == ['app', 'test', 'listTests']
+    assert schema['listTests'].groups == ['app', 'test']
