@@ -8,4 +8,4 @@ def test_url_resolve():
 
 
 def test_url_resolve_with_kwargs():
-    assert django_reverse('test-instance-view', kwargs={'pk': 1, }) == reverse('getTest', id=1)
+    assert django_reverse('test-retrieve-view', kwargs={'pk': 1, }) == reverse('getTest', id=1)

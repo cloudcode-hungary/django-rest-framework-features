@@ -1,3 +1,10 @@
+import factory
+import pytest
+from factory.django import DjangoModelFactory
+from pytest_django.lazy_django import skip_if_no_django
+from pytest_factoryboy import register
+
+
 def pytest_configure():
     from django.conf import settings
 
@@ -32,6 +39,7 @@ def pytest_configure():
 
             'rest_framework',
             'rest_framework.authtoken',
+            'rest_framework_features',
             'tests',
         ),
         PASSWORD_HASHERS=(
@@ -42,6 +50,17 @@ def pytest_configure():
             'django.contrib.auth.hashers.MD5PasswordHasher',
             'django.contrib.auth.hashers.CryptPasswordHasher',
         ),
+        REST_FRAMEWORK_FEATURES={
+            'ENABLE_SYNC': False,
+        },
+        REST_FRAMEWORK={
+            'DEFAULT_PERMISSION_CLASSES': (
+                'rest_framework_features.permissions.CanAccessFeature',
+            ),
+            'DEFAULT_AUTHENTICATION_CLASSES': (
+                'rest_framework.authentication.SessionAuthentication',
+            ),
+        }
     )
 
     try:
@@ -84,3 +103,39 @@ def pytest_configure():
         django.setup()
     except AttributeError:
         pass
+
+    from rest_framework_features import models
+    from .models import User
+
+    @register
+    class UserFactory(DjangoModelFactory):
+        class Meta:
+            model = User
+
+        email = factory.Sequence(lambda n: f'user_{n}@x.com')
+
+    @register
+    class AdminFactory(DjangoModelFactory):
+        class Meta:
+            model = User
+
+        is_superuser = True
+        is_staff = True
+        email = factory.Sequence(lambda n: f'admin_{n}@x.com')
+
+    @register
+    class FeatureFactory(DjangoModelFactory):
+        class Meta:
+            model = models.Feature
+
+        name = factory.Sequence(lambda n: f'feature {n}')
+
+
+@pytest.fixture()
+def api_client():
+    """A Django test api_client instance."""
+    skip_if_no_django()
+
+    from rest_framework.test import APIClient
+
+    return APIClient()

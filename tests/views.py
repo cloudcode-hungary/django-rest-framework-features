@@ -1,19 +1,29 @@
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from rest_framework_features import Feature
+from rest_framework_features import schema
 
 
-@Feature.view('app', 'test', get='listTests')
+@schema.view('app', 'test', 'read', get='listTests')
 class TestListView(APIView):
+    authentication_classes = (SessionAuthentication,)
+
     def get(self, request, *args, **kwargs):
         return Response(200)
 
 
-@Feature.view('app', 'test', get='getTest', delete='deleteTest')
-class TestRetrieveDestroyView(APIView):
+@schema.view('app', 'test', 'read', get='getTest')
+class TestRetrieveView(APIView):
+    authentication_classes = (SessionAuthentication,)
+
     def get(self, request, *args, **kwargs):
         return Response(200)
+
+
+@schema.view('app', 'test', 'write', delete='deleteTest')
+class TestDestroyView(APIView):
+    authentication_classes = (SessionAuthentication,)
 
     def delete(self, request, *args, **kwargs):
         return Response(200)
@@ -21,5 +31,6 @@ class TestRetrieveDestroyView(APIView):
 
 __all__ = (
     'TestListView',
-    'TestRetrieveDestroyView',
+    'TestRetrieveView',
+    'TestDestroyView',
 )
