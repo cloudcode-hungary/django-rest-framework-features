@@ -31,4 +31,5 @@ def get_codenames_from_description(description):
 
 __all__ = (
     'CanAccessFeature',
+    'get_codenames_from_description',
 )
