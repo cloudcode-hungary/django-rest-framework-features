@@ -1,8 +1,12 @@
+import re
+
 from django.core.exceptions import ImproperlyConfigured
+from django.template.loader import render_to_string
 from rest_framework.schemas import SchemaGenerator
 
 REGISTRY_ATTR_NAME = '_feature_schema'
 _schema_cache = None
+_humanize_pattern = re.compile(r'([a-z]|[0-9]+[a-z]?|[A-Z]?)([A-Z0-9])')
 
 
 def view(*groups, **features):
@@ -47,6 +51,9 @@ def get_schema(cache=True):
         *groups, feature_name = description
         if feature_name in schema:
             raise ImproperlyConfigured('TODO duplicate feature name')
+        if re.match(r'\s', feature_name):
+            raise ImproperlyConfigured('TODO not white space in feature name')
+        verbose_name = _humanize_pattern.sub(r'\1 \2', feature_name).lower().capitalize()
         feature_def = dict(
             name=feature_name,
             url=url,
@@ -55,14 +62,24 @@ def get_schema(cache=True):
             view_class=view_class,
             groups=groups,
             description=description,
+            verbose_name=verbose_name,
         )
         schema[feature_name] = feature_def
     _schema_cache = schema
     return schema
 
 
+def get_schema_template(template_name):
+    schema = get_schema()
+    return render_to_string(
+        f'rest_framework_features/{template_name}',
+        context={'schema': schema},
+    )
+
+
 __all__ = (
     'REGISTRY_ATTR_NAME',
     'view',
     'get_schema',
+    'get_schema_template',
 )

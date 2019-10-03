@@ -1,0 +1,1 @@
+{ {% for feature_name, feature_def in schema.items %}{% if forloop.counter0 > 0 %},{% endif %}"{{feature_name}}": {"url":"{{feature_def.coerced_url}}", "method":"{{feature_def.http_method_name}}"}{% endfor %} }

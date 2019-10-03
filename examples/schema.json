@@ -1,0 +1,14 @@
+{
+  "listTests": {
+    "url": "/api/1/test/",
+    "method": "get"
+  },
+  "getTest": {
+    "url": "/api/1/test/{id}/",
+    "method": "get"
+  },
+  "deleteTest": {
+    "url": "/api/1/test/{id}/delete/",
+    "method": "delete"
+  }
+}
