@@ -109,7 +109,7 @@ feature_settings = FeatureSettings(None, DEFAULTS, IMPORT_STRINGS)
 
 def reload_feature_settings(*args, **kwargs):
     setting = kwargs['setting']
-    if setting == 'REST_FRAMEWORK':
+    if setting == 'REST_FRAMEWORK_FEATURES':
         feature_settings.reload()
 
 
