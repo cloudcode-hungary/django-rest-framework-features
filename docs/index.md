@@ -17,7 +17,7 @@ Rapid schema generation, permission management based on named features
 
 ## Overview
 
-Rapid schema generation, unit generation, permission management based on named features
+Decorate your rest framework endpoints to access named actions everywhere.
 
 ## Requirements
 
@@ -27,7 +27,7 @@ Rapid schema generation, unit generation, permission management based on named f
 
 ## Installation
 
-Install using `pip`...
+Install using `pip`
 
 ```bash
 $ pip install pip install git+ssh://git@dev.cloudcode.hu/common/django-rest-framework-features.git

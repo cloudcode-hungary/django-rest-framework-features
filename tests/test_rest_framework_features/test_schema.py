@@ -36,3 +36,9 @@ def test_feature_schema():
     assert feature_schema['deleteTest']['coerced_url'] == '/api/1/test/{id}/delete/'
     assert feature_schema['deleteTest']['description'] == ['app', 'test', 'write', 'deleteTest']
     assert feature_schema['deleteTest']['groups'] == ['app', 'test', 'write']
+
+
+def test_feature_schema_configured_set_http_method_names():
+    assert TestListView.http_method_names == ['get']
+    assert TestRetrieveView.http_method_names == ['get']
+    assert TestDestroyView.http_method_names == ['delete']

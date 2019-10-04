@@ -4,6 +4,8 @@ from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import render_to_string
 from rest_framework.schemas import SchemaGenerator
 
+from . import settings
+
 REGISTRY_ATTR_NAME = '_feature_schema'
 _schema_cache = None
 _humanize_pattern = re.compile(r'([a-z]|[0-9]+[a-z]?|[A-Z]?)([A-Z0-9])')
@@ -27,6 +29,8 @@ def view(*groups, **features):
                 view_class,
             )
             setattr(view_class, REGISTRY_ATTR_NAME, registry)
+        if settings.feature_settings.SET_HTTP_METHOD_NAMES:
+            setattr(view_class, 'http_method_names', list(features.keys()))
         return view_class
 
     return decorator

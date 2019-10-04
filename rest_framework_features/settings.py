@@ -15,8 +15,9 @@ from django.test.signals import setting_changed
 from django.utils.module_loading import import_string
 
 DEFAULTS = {
-    'ENABLE_FEATURES': True,
-    'ENABLE_PERMISSIONS': True,
+    'ENABLE_FEATURES': False,
+    'ENABLE_PERMISSIONS': False,
+    'SET_HTTP_METHOD_NAMES': False,
     'DB_MODEL': 'rest_framework_features.models.Feature',
 }
 
