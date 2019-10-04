@@ -1,6 +1,6 @@
 # Minimum Django and REST framework version
-Django>=2.2.1
-djangorestframework>=3.9.4
+Django==2.2.6
+djangorestframework==3.10.3
 
 # Test requirements
 factory-boy==2.11.1
