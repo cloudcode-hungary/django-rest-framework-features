@@ -58,7 +58,7 @@ class FeatureSettings:
     For example:
 
         from rest_framework_features.settings import feature_settings
-        print(feature_settings.DEFAULT_RENDERER_CLASSES)
+        print(feature_settings.DB_MODEL)
 
     Any setting with string import paths will be automatically resolved
     and return the class, rather than the string literal.
