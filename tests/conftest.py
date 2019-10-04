@@ -135,7 +135,6 @@ def pytest_configure():
             model = User
 
         is_superuser = True
-        is_staff = True
         email = factory.Sequence(lambda n: f'admin_{n}@x.com')
 
     @register
@@ -154,3 +153,15 @@ def api_client():
     from rest_framework.test import APIClient
 
     return APIClient()
+
+
+@pytest.fixture()
+def feature_api_client(admin_factory):
+    """A Django test feature_api_client instance."""
+    skip_if_no_django()
+
+    from rest_framework_features.test import FeatureAPIClient
+
+    client = FeatureAPIClient()
+    client.force_authenticate(admin_factory())
+    return client

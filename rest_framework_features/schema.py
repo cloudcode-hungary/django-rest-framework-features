@@ -36,9 +36,9 @@ def view(*groups, **features):
     return decorator
 
 
-def get_schema(cache=True):
+def get_schema(use_cache=True):
     global _schema_cache
-    if cache and _schema_cache:
+    if use_cache and _schema_cache:
         return _schema_cache
     generator = SchemaGenerator()
     enumerator = generator.endpoint_inspector_cls()
@@ -57,7 +57,7 @@ def get_schema(cache=True):
             raise ImproperlyConfigured('TODO duplicate feature name')
         if re.match(r'\s', feature_name):
             raise ImproperlyConfigured('TODO not white space in feature name')
-        verbose_name = _humanize_pattern.sub(r'\1 \2', feature_name).lower().capitalize()
+        verbose_name = _humanize_pattern.sub(r'\1 \2', feature_name).lower()
         feature_def = dict(
             name=feature_name,
             url=url,
@@ -73,17 +73,33 @@ def get_schema(cache=True):
     return schema
 
 
-def get_schema_template(template_name):
+def render_schema(*args, **kwargs):
+    context = kwargs.pop('context', {})
     schema = get_schema()
+    context.update(schema=schema)
     return render_to_string(
-        f'rest_framework_features/{template_name}',
-        context={'schema': schema},
+        *args, **kwargs, context=context
     )
+
+
+def render_json_schema():
+    return render_schema('rest_framework_features/feature_schema.json')
+
+
+def render_locale_js_schema():
+    return render_schema('rest_framework_features/feature_locale.js')
+
+
+def render_locale_py_schema():
+    return render_schema('rest_framework_features/feature_locale.py')
 
 
 __all__ = (
     'REGISTRY_ATTR_NAME',
     'view',
     'get_schema',
-    'get_schema_template',
+    'render_schema',
+    'render_json_schema',
+    'render_locale_js_schema',
+    'render_locale_py_schema',
 )

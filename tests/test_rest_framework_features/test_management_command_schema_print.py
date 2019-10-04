@@ -11,7 +11,7 @@ def test_features_schema_json():
     assert stdout.write.call_args == mock.call(json.dumps({
         'listTests': {'url': '/api/1/test/', 'method': 'get'},
         'getTest': {'url': '/api/1/test/{id}/', 'method': 'get'},
-        'deleteTest': {'url': '/api/1/test/{id}/delete/', 'method': 'delete'}
+        'deleteTest': {'url': '/api/1/test/{id}/', 'method': 'delete'}
     }).replace(' ', '') + '\n')
 
 
@@ -22,9 +22,9 @@ def test_features_schema_locale_js():
     assert stdout.write.call_args == mock.call(
         '(function () {\n'
         '  return {\n'
-        '''    listTests: window.django.pgettext('api', 'List tests'),\n'''
-        '''    getTest: window.django.pgettext('api', 'Get test'),\n'''
-        '''    deleteTest: window.django.pgettext('api', 'Delete test'),\n'''
+        '''    listTests: window.django.pgettext('api', 'list tests'),\n'''
+        '''    getTest: window.django.pgettext('api', 'get test'),\n'''
+        '''    deleteTest: window.django.pgettext('api', 'delete test'),\n'''
         '  }\n'
         '})\n'
     )
@@ -37,8 +37,8 @@ def test_features_schema_locale_py():
     assert stdout.write.call_args == mock.call(
         'from django.utils.translation import pgettext\n\n'
         'API = {\n'
-        '''    'listTests': pgettext('api', 'List tests'),\n'''
-        '''    'getTest': pgettext('api', 'Get test'),\n'''
-        '''    'deleteTest': pgettext('api', 'Delete test'),\n'''
+        '''    'listTests': pgettext('api', 'list tests'),\n'''
+        '''    'getTest': pgettext('api', 'get test'),\n'''
+        '''    'deleteTest': pgettext('api', 'delete test'),\n'''
         '}\n'
     )

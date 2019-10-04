@@ -10,9 +10,14 @@ def reverse(feature_name, **kwargs):
     except KeyError:
         raise NoReverseMatch(feature_name)
     else:
-        return feature['coerced_url'].format(**kwargs)
-        
+        return substitute(feature['coerced_url'], kwargs)
+
+
+def substitute(coerced_url, kwargs):
+    return coerced_url.format(**kwargs)
+
 
 __all__ = (
-    'reverse',    
+    'reverse',
+    'substitute',
 )

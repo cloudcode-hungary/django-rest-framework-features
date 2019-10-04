@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework_features import schema
 
 
-@schema.view('app', 'test', 'read', get='listTests')
+@schema.view('app', 'test', get=('read', 'listTests'))
 class TestListView(ListAPIView):
     authentication_classes = (SessionAuthentication,)
 
@@ -14,17 +14,12 @@ class TestListView(ListAPIView):
         return Response(200)
 
 
-@schema.view('app', 'test', 'read', get='getTest')
-class TestRetrieveView(APIView):
+@schema.view('app', 'test', get=('read', 'getTest'), delete=('write', 'deleteTest'))
+class TestInstanceView(APIView):
     authentication_classes = (SessionAuthentication,)
 
     def get(self, request, *args, **kwargs):
         return Response(200)
-
-
-@schema.view('app', 'test', 'write', delete='deleteTest')
-class TestDestroyView(APIView):
-    authentication_classes = (SessionAuthentication,)
 
     def delete(self, request, *args, **kwargs):
         return Response(200)
@@ -32,6 +27,5 @@ class TestDestroyView(APIView):
 
 __all__ = (
     'TestListView',
-    'TestRetrieveView',
-    'TestDestroyView',
+    'TestInstanceView',
 )
