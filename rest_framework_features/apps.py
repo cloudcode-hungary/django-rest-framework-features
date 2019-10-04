@@ -12,7 +12,7 @@ class RestFrameworkFeaturesConfig(AppConfig):
     verbose_name = 'Django REST framework features'
 
     def ready(self):
-        if settings.feature_settings.ENABLE_SYNC:
+        if settings.feature_settings.ENABLE_FEATURES:
             post_migrate.connect(sync_features, sender=self)
         if settings.feature_settings.ENABLE_PERMISSIONS:
             post_migrate.connect(sync_permissions, sender=self)

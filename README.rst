@@ -6,7 +6,7 @@ djangorestframework-features
 Overview
 --------
 
-Rapid schema generation, unit generation, permission management based on named features
+Rapid schema generation, permission management based on named features
 
 Requirements
 ------------

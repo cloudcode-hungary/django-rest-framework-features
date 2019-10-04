@@ -65,7 +65,7 @@ def pytest_configure():
             'django.contrib.auth.hashers.CryptPasswordHasher',
         ),
         REST_FRAMEWORK_FEATURES={
-            'ENABLE_SYNC': False,
+            'ENABLE_FEATURES': False,
         },
         REST_FRAMEWORK={
             'DEFAULT_PERMISSION_CLASSES': (

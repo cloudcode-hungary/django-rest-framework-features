@@ -15,7 +15,7 @@ from django.test.signals import setting_changed
 from django.utils.module_loading import import_string
 
 DEFAULTS = {
-    'ENABLE_SYNC': True,
+    'ENABLE_FEATURES': True,
     'ENABLE_PERMISSIONS': True,
     'DB_MODEL': 'rest_framework_features.models.Feature',
 }
