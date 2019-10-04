@@ -5,4 +5,5 @@ site_dir: html
 nav:
     - Home: index.md
     - Schema: schema.md
+    - Permissions: permissions.md
 theme: readthedocs

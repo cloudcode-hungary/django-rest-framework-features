@@ -17,7 +17,7 @@ Rapid schema generation, permission management based on named features
 
 ## Overview
 
-Decorate your rest framework endpoints to access named actions everywhere.
+Decorate your rest framework endpoints to access named actions, and many more.
 
 ## Requirements
 
