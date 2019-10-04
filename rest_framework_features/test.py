@@ -5,7 +5,7 @@ from . import schema, urls
 
 
 class FeatureAPIClient(APIClient):
-    def __call__(self, feature_name, *args, kwargs=None, **extra):
+    def __call__(self, feature_name, kwargs=None, **extra):
         feature_schema = schema.get_schema()
         try:
             feature_def = feature_schema[feature_name]
@@ -16,7 +16,6 @@ class FeatureAPIClient(APIClient):
             method = feature_def['http_method_name']
             return getattr(self, method)(
                 path=path,
-                *args,
                 **extra,
             )
 
