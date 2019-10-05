@@ -4,7 +4,8 @@ repo_url: https://dev.cloudcode.hu/common/django-rest-framework-features
 site_dir: html
 nav:
     - Home: index.md
-    - Schema: schema.md
     - Permissions: permissions.md
+    - Schema: schema.md
     - Settings: settings.md
+    - URLs: urls.md
 theme: readthedocs
