@@ -6,4 +6,5 @@ nav:
     - Home: index.md
     - Schema: schema.md
     - Permissions: permissions.md
+    - Settings: settings.md
 theme: readthedocs
