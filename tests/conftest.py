@@ -67,6 +67,7 @@ def pytest_configure():
         REST_FRAMEWORK_FEATURES={
             'ENABLE_FEATURES': False,
             'SET_HTTP_METHOD_NAMES': True,
+            'SET_SCHEMA_OVERRIDE': True,
         },
         REST_FRAMEWORK={
             'DEFAULT_PERMISSION_CLASSES': (

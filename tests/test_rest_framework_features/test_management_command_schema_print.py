@@ -42,3 +42,14 @@ def test_features_schema_locale_py():
         '''    'deleteTest': pgettext('api', 'delete test'),\n'''
         '}\n'
     )
+
+
+def test_openapi_schema_generation_with_operation_id_overrides():
+    stdout = mock.MagicMock()
+    call_command('generateschema', stdout=stdout, format='openapi-json')
+
+    result = stdout.write.call_args[0][0]
+
+    assert '"operationId": "listTests"' in result
+    assert '"operationId": "getTest"' in result
+    assert '"operationId": "deleteTest"' in result

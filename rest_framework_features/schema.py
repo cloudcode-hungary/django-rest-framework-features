@@ -2,7 +2,7 @@ import re
 
 from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import render_to_string
-from rest_framework.schemas import SchemaGenerator
+from rest_framework.schemas import SchemaGenerator, openapi
 
 from . import settings
 
@@ -31,9 +31,18 @@ def view(*groups, **features):
             setattr(view_class, REGISTRY_ATTR_NAME, registry)
         if settings.feature_settings.SET_HTTP_METHOD_NAMES:
             setattr(view_class, 'http_method_names', list(features.keys()))
+        if settings.feature_settings.SET_SCHEMA_OVERRIDE:
+            setattr(view_class, 'schema', FeatureAutoSchema())
         return view_class
 
     return decorator
+
+
+class FeatureAutoSchema(openapi.AutoSchema):
+    def _get_operation_id(self, path, method):
+        registry = getattr(self.view, REGISTRY_ATTR_NAME)
+        *groups, feature_name = registry[method.lower()][0]
+        return feature_name
 
 
 def get_schema(use_cache=True):

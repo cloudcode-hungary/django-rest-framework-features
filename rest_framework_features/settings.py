@@ -18,6 +18,7 @@ DEFAULTS = {
     'ENABLE_FEATURES': False,
     'ENABLE_PERMISSIONS': False,
     'SET_HTTP_METHOD_NAMES': False,
+    'SET_SCHEMA_OVERRIDE': False,
     'DB_MODEL': 'rest_framework_features.models.Feature',
 }
 
