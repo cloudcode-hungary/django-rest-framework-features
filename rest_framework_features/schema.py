@@ -14,7 +14,10 @@ _humanize_pattern = re.compile(r'([a-z]|[0-9]+[a-z]?|[A-Z]?)([A-Z0-9])')
 def view(*groups, **features):
     def decorator(view_class):
         if not features:
-            raise ImproperlyConfigured('TODO invalid decorator, no http method names')
+            raise ImproperlyConfigured(
+                'Invalid view decorator specified for %s. '
+                'At least one http method kwargs is required' % (view_class,)
+            )
         for http_method_name, feature_name in features.items():
             description = list(groups)
             if isinstance(feature_name, (list, tuple)):
@@ -29,6 +32,11 @@ def view(*groups, **features):
                 view_class,
             )
             setattr(view_class, REGISTRY_ATTR_NAME, registry)
+            print(type(feature_name), feature_name)
+            if re.match(r'\s', description[-1]):
+                raise ImproperlyConfigured('White spaces are not allowed in feature names. %s on %s is invalid' % (
+                    description[-1], view_class
+                ))
         if settings.feature_settings.SET_HTTP_METHOD_NAMES:
             setattr(view_class, 'http_method_names', list(features.keys()))
         if settings.feature_settings.SET_SCHEMA_OVERRIDE:
@@ -59,13 +67,19 @@ def get_schema(use_cache=True):
         try:
             feature = getattr(view_func.cls, REGISTRY_ATTR_NAME)[http_method_name.lower()]
         except AttributeError:
-            raise ImproperlyConfigured('TODO missing view definition')
+            if settings.feature_settings.RAISE_FOR_MISSING_VIEW:
+                raise ImproperlyConfigured('%s view has no schema configuration' % (view_func,))
+            else:
+                continue
+        except KeyError:
+            raise ImproperlyConfigured('%s view is missing %s schema configuration' % (view_func, http_method_name))
+
         description, http_method_name, view_class = feature
         *groups, feature_name = description
         if feature_name in schema:
-            raise ImproperlyConfigured('TODO duplicate feature name')
-        if re.match(r'\s', feature_name):
-            raise ImproperlyConfigured('TODO not white space in feature name')
+            raise ImproperlyConfigured('Duplicate feature names are not allowed. %s is already registered with %s' % (
+                feature_name, schema[feature_name]['view_class']
+            ))
         verbose_name = _humanize_pattern.sub(r'\1 \2', feature_name).lower()
         feature_def = dict(
             name=feature_name,
