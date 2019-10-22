@@ -1,7 +1,9 @@
 djangorestframework-features
 ======================================
 
-|build-status-image| |pypi-version|
+.. image:: https://readthedocs.org/projects/django-rest-framework-features/badge/?version=latest
+    :target: https://django-rest-framework-features.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 Overview
 --------
