@@ -10,6 +10,12 @@ env:
     - TOX_ENV=py36-docs
     - TOX_ENV=py36-django2.2-drf3.10
 
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+
 matrix:
   fast_finish: true
 

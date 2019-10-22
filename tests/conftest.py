@@ -1,3 +1,5 @@
+import os
+
 import factory
 import pytest
 from factory.django import DjangoModelFactory
@@ -8,10 +10,23 @@ from pytest_factoryboy import register
 def pytest_configure():
     from django.conf import settings
 
+    if 'TRAVIS' in os.environ:
+        databases = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                'NAME': 'travisci',
+                'USER': 'postgres',
+                'PASSWORD': '',
+                'HOST': 'localhost',
+                'PORT': '',
+            }
+        }
+    else:
+        databases = {'default': {'ENGINE': 'django.db.backends.sqlite3',
+                           'NAME': ':memory:'}}
     settings.configure(
         DEBUG_PROPAGATE_EXCEPTIONS=True,
-        DATABASES={'default': {'ENGINE': 'django.db.backends.sqlite3',
-                               'NAME': ':memory:'}},
+        DATABASES=databases,
         SITE_ID=1,
         SECRET_KEY='not very secret in tests',
         USE_I18N=True,
