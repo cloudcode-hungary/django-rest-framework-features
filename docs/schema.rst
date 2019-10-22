@@ -20,7 +20,7 @@ and manage permissions.
 
 #### `*groups`
 Used to define a tree of features. This is useful when used in combination with the permissions module. 
-To read more about permissions click [here.](permissions.md)
+To read more about permissions click [here.](permissions.rst)
 
 #### `**features`
 The keys must be a subset of the available http verbs 

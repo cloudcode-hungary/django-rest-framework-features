@@ -1,11 +1,11 @@
-site_name: djangorestframework-features
+site_name: django-rest-framework-features
 site_description: Rapid schema generation, permission management based on named features
-repo_url: https://dev.cloudcode.hu/common/django-rest-framework-features
+repo_url: https://github.com/cloudcode-hungary/django-rest-framework-features
 site_dir: html
 nav:
-    - Home: index.md
-    - Permissions: permissions.md
-    - Schema: schema.md
-    - Settings: settings.md
-    - URLs: urls.md
+    - Home: index.rst
+    - Permissions: permissions.rst
+    - Schema: schema.rst
+    - Settings: settings.rst
+    - URLs: urls.rst
 theme: readthedocs
