@@ -1,12 +1,3 @@
-<div class="badges">
-    <a href="http://travis-ci.org/balintb/cloudcode-hungary/django-rest-framework-features">
-        <img src="https://travis-ci.org/balintb/cloudcode-hungary/django-rest-framework-features.svg?branch=master">
-    </a>
-    <a href="https://pypi.python.org/pypi/djangorestframework-features">
-        <img src="https://img.shields.io/pypi/v/djangorestframework-features.svg">
-    </a>
-</div>
-
 ---
 
 # Djang REST framework features

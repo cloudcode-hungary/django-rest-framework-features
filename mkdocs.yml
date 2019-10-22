@@ -3,9 +3,9 @@ site_description: Rapid schema generation, permission management based on named 
 repo_url: https://github.com/cloudcode-hungary/django-rest-framework-features
 site_dir: html
 nav:
-    - Home: index.rst
-    - Permissions: permissions.rst
-    - Schema: schema.rst
-    - Settings: settings.rst
-    - URLs: urls.rst
+    - Home: index.md
+    - Permissions: permissions.md
+    - Schema: schema.md
+    - Settings: settings.md
+    - URLs: urls.md
 theme: readthedocs

@@ -20,3 +20,4 @@ venv/
 
 !.gitignore
 !.travis.yml
+!.readthedocs.yml
