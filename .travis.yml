@@ -1,5 +1,8 @@
 language: python
 
+python:
+    - 3.6
+
 sudo: false
 
 env:
@@ -12,16 +15,6 @@ matrix:
 
 install:
   - pip install tox
-  - pip install factory-boy==2.11.1
-  - pip install pytest-factoryboy==2.0.2
-  - pip install pytest==4.4.0
-  - pip install pytest-cov==2.6.0
-  - pip install pytest-django==3.4.3
-  - pip install pytest-sugar==0.9.1
-  - pip install pytest-xdist==1.29.0
-  - pip install pylint==2.3.1
-  - pip install coreapi==2.3.3
-  - pip install autopep8==1.4.4
 
 script:
     - tox -e $TOX_ENV
