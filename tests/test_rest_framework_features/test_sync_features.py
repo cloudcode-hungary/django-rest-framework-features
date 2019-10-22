@@ -9,7 +9,7 @@ def test_sync_features(feature_factory):
     feature_app = feature_factory(name='app')
     feature_test = feature_factory(name='test', parent=feature_app)
     feature_update_test = feature_factory(name='updateTest', parent=feature_test)
-    feature_get_test_under_app = feature_factory(name='getTest', parent=feature_app)
+    feature_get_test_under_app = feature_factory(name='getTest', parent=feature_app)     # noqa F841
 
     apps.sync_features()
 

@@ -12,7 +12,7 @@ def test_sync_permissions():
     permission_app = Permission.objects.create(name='app', codename='app', content_type=content_type)
     permission_test = Permission.objects.create(name='test', codename='app_test', content_type=content_type)
     permission_update_test = Permission.objects.create(name='updateTest', codename='app_test_updateTest', content_type=content_type)
-    permission_get_test_under_app = Permission.objects.create(name='getTest', codename='app_getTest', content_type=content_type)
+    permission_get_test_under_app = Permission.objects.create(name='getTest', codename='app_getTest', content_type=content_type)     # noqa F841
 
     apps.sync_permissions()
 
