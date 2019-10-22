@@ -1,9 +1,12 @@
-djangorestframework-features
+django-rest-framework-features
 ======================================
 
 .. image:: https://readthedocs.org/projects/django-rest-framework-features/badge/?version=latest
     :target: https://django-rest-framework-features.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. image:: https://travis-ci.org/cloudcode-hungary/django-rest-framework-features.svg?branch=master
+    :target: https://travis-ci.org/cloudcode-hungary/django-rest-framework-features.svg?branch=master
+    :alt: Build Status
 
 Overview
 --------
@@ -77,8 +80,3 @@ To build the documentation:
     $ mkdocs build
 
 .. _tox: http://tox.readthedocs.org/en/latest/
-
-.. |build-status-image| image:: https://secure.travis-ci.org/balintb/cloudcode-hungary/django-rest-framework-features.svg?branch=master
-   :target: http://travis-ci.org/balintb/cloudcode-hungary/django-rest-framework-features?branch=master
-.. |pypi-version| image:: https://img.shields.io/pypi/v/djangorestframework-features.svg
-   :target: https://pypi.python.org/pypi/djangorestframework-features
