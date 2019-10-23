@@ -21,7 +21,7 @@ Decorate your rest framework endpoints to access named actions, and many more.
 Install using `pip`
 
 ```bash
-$ pip install pip install git+ssh://git@dev.cloudcode.hu/common/django-rest-framework-features.git
+$ pip install git+https://github.com/cloudcode-hungary/django-rest-framework-features
 ```
 
 Add `'rest_framework_features'` to your `INSTALLED_APPS` setting.
