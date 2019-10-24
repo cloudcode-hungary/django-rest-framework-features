@@ -7,11 +7,13 @@ django-rest-framework-features
 .. image:: https://travis-ci.org/cloudcode-hungary/django-rest-framework-features.svg?branch=master
     :target: https://travis-ci.org/cloudcode-hungary/django-rest-framework-features.svg?branch=master
     :alt: Build Status
+.. image:: https://badge.fury.io/py/djangorestframework-features.svg
+    :target: https://badge.fury.io/py/djangorestframework-features
 
 Overview
 --------
 
-Rapid schema generation, permission management based on named features
+Advanced schema generation based on named features
 
 Requirements
 ------------
@@ -27,11 +29,11 @@ Install using pip
 
 .. code:: bash
 
-    $ pip install git+https://github.com/cloudcode-hungary/django-rest-framework-features
+    $ pip install djangorestframework-features
 
 Add 'rest_framework_features' to your INSTALLED_APPS setting.
 
-::
+.. code:: python
 
    INSTALLED_APPS = [
        ...

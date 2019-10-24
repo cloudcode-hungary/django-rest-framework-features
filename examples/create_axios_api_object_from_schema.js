@@ -33,13 +33,14 @@ function createUrlFromKwargs(url, kwargs) {
 // e.g. await api.getTest({ kwargs: { id: 1 }});
 // e.g. await api.listTests();
 const api = Object.entries(schema).reduce(
-  (acc, [feature, {method, url}]) => (
-    ({kwargs = {}, ...config}) => axiosApi({
+  (acc, [feature, {method, url}]) => ({
+    ...acc,
+    [feature]: ({kwargs = {}, ...config}) => axiosApi({
       url: createUrlFromKwargs(url, kwargs),
       method,
       ...config,
     })
-  ),
+  }),
   {},
 );
 

@@ -2,7 +2,7 @@
 
 # Djang REST framework features
 
-Rapid schema generation, permission management based on named features
+Advanced schema generation based on named features
 
 ---
 
@@ -21,7 +21,7 @@ Decorate your rest framework endpoints to access named actions, and many more.
 Install using `pip`
 
 ```bash
-$ pip install git+https://github.com/cloudcode-hungary/django-rest-framework-features
+$ pip install djangorestframework-features
 ```
 
 Add `'rest_framework_features'` to your `INSTALLED_APPS` setting.

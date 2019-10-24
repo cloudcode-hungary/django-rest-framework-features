@@ -1,5 +1,5 @@
 site_name: django-rest-framework-features
-site_description: Rapid schema generation, permission management based on named features
+site_description: Advanced schema generation based on named features
 repo_url: https://github.com/cloudcode-hungary/django-rest-framework-features
 site_dir: html
 nav:

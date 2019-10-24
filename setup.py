@@ -8,7 +8,7 @@ from setuptools import setup
 
 name = 'djangorestframework-features'
 package = 'rest_framework_features'
-description = 'Rapid schema generation, permission management based on named features'
+description = 'Advanced schema generation based on named features'
 url = 'https://github.com/balintb/cloudcode-hungary/django-rest-framework-features'
 author = 'Balina Bálint'
 author_email = 'balintb@cloudcode.hu'
