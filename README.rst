@@ -13,7 +13,8 @@ django-rest-framework-features
 Overview
 --------
 
-Advanced schema generation based on named features
+Advanced schema generation based on named features. `Introduction Medium article
+<https://medium.com/@cloudcode.bbb/how-to-build-your-django-rest-framework-api-based-on-named-features-97432ce07969>`_
 
 Requirements
 ------------
