@@ -32,7 +32,6 @@ def view(*groups, **features):
                 view_class,
             )
             setattr(view_class, REGISTRY_ATTR_NAME, registry)
-            print(type(feature_name), feature_name)
             if re.match(r'\s', description[-1]):
                 raise ImproperlyConfigured('White spaces are not allowed in feature names. %s on %s is invalid' % (
                     description[-1], view_class
