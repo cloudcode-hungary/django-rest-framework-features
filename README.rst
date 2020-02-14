@@ -59,6 +59,10 @@ See the following views:
    class TestListView(generics.ListAPIView):
        ...
 
+   @schema.view(post='createTest')
+   class TestCreateView(generics.CreateAPIView):
+       ...
+
 
    @schema.view(get='getTest', put='updateTest', delete='deleteTest')
    class TestInstanceView(generics.RetrieveUpdateDestroyAPIView):
@@ -69,6 +73,7 @@ See the following views:
            path('v1/', include([
                path('test/', include([
                    path('', TestListView.as_view()),
+                   path('create/', TestCreateView.as_view()),
                    path('<int:pk>/', TestInstanceView.as_view()),
                ])),
            ])),
